@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "938210442513",
+    "firebase_url": "https://tax-return-1715f.firebaseio.com",
+    "project_id": "tax-return-1715f",
+    "storage_bucket": "tax-return-1715f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938210442513:android:0cec6627667df688fce0b0",
+        "android_client_info": {
+          "package_name": "com.example.tax_return"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938210442513-1a8ert90l4osiomkfd5g9jiphlituvl2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tax_return",
+            "certificate_hash": "71f97ea73a6442efec603d4af6f7d4597e3555e7"
+          }
+        },
+        {
+          "client_id": "938210442513-irroo4elijiken57f0qinn97m0dmjuga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzXIOORTXkBDNNsqsgWfDCM90HuxhnTTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "938210442513-irroo4elijiken57f0qinn97m0dmjuga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

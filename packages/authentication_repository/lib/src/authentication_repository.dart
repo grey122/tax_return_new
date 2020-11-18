@@ -10,6 +10,8 @@ import 'models/models.dart';
 
 //TODO: do some json conversion (facebook data )with the user information
 //TODO: try to implement google account logged with a different user
+//TODO: reserach on how to deal with google network errors
+//TODO: test the excpetion call you decalerd
 
 /// Thrown if during the sign up process if a failure occurs.
 class SignUpFailure implements Exception {}

@@ -4,7 +4,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:tax_return/models/email.dart';
+import 'package:tax_return/feature/authentication/presentation/logic/validation/validation_export.dart';
 
 part 'login_state.dart';
 

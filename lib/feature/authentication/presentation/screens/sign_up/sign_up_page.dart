@@ -1,12 +1,13 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tax_return/sign_up_cubit/sign_up_cubit.dart';
-import 'package:tax_return/view/sign_up/sign_up_form.dart';
+import 'package:tax_return/feature/authentication/presentation/logic/bloc/bloc_export.dart';
+
+import 'sign_up_form.dart';
+
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key key}) : super(key: key);
 
-  
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => const SignUpPage());
   }

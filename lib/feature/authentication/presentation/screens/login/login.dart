@@ -1,7 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tax_return/login_cubit/login_cubit.dart';
+import 'package:tax_return/feature/authentication/presentation/logic/bloc/bloc_export.dart';
 
 import 'login_form.dart';
 

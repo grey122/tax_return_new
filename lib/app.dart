@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tax_return/authentication_bloc/authentication_bloc.dart';
+
 import 'package:tax_return/home_page.dart';
 
 import 'package:tax_return/splash/view/splash_page.dart';
-import 'package:tax_return/view/login.dart';
+import 'package:tax_return/feature/authentication/presentation/screens/login/login.dart';
+
+import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';
 
 class App extends StatelessWidget {
   final AuthenticationRepository authenticationRepository;
@@ -50,7 +52,6 @@ class _AppViewState extends State<AppView> {
           listener: (context, state) {
             switch (state.status) {
               case AuthenticationStatus.authenticated:
-              
                 _navigator.pushAndRemoveUntil<void>(
                   HomePage.route(),
                   (route) => false,

@@ -2,7 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:tax_return/models/email.dart';
+import 'package:tax_return/feature/authentication/presentation/logic/validation/validation_export.dart';
 
 part 'sign_up_state.dart';
 
@@ -56,6 +56,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       ]),
     ));
   }
+
   Future<void> signUpFormSubmitted() async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
@@ -82,7 +83,6 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-
   Future<void> logInWithFacebook() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
@@ -94,7 +94,4 @@ class SignUpCubit extends Cubit<SignUpState> {
       emit(state.copyWith(status: FormzStatus.pure));
     }
   }
-
-
-
 }

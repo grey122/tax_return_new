@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tax_return/sign_up_cubit/sign_up_cubit.dart';
+import 'package:tax_return/feature/authentication/presentation/logic/logic_export.dart';
 import 'package:formz/formz.dart';
-
 
 //TODO: if user have signed in before, show dialogue that this email address already have an id
 
@@ -34,9 +33,9 @@ class SignUpForm extends StatelessWidget {
             _ConfirmPasswordInput(),
             const SizedBox(height: 8.0),
             _SignUpButton(),
-             const SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             _GoogleLoginButton(),
-             const SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             _FacebookLoginButton(),
           ],
         ),
@@ -137,8 +136,6 @@ class _SignUpButton extends StatelessWidget {
       },
     );
   }
-
-  
 }
 
 class _GoogleLoginButton extends StatelessWidget {
@@ -158,7 +155,6 @@ class _GoogleLoginButton extends StatelessWidget {
     );
   }
 }
-
 
 class _FacebookLoginButton extends StatelessWidget {
   @override

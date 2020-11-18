@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             onPressed: () => context
                 .bloc<AuthenticationBloc>()
                 .add(AuthenticationLogoutRequested()),
-            //TODO: show dialogue box asking user if he really wants to logout
+            //TODO: show dialogue box asking user if he really wants to logou
           )
         ],
       ),

@@ -3,8 +3,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:tax_return/home_page.dart';
-
-import 'package:tax_return/splash/view/splash_page.dart';
+import 'package:tax_return/core/splash/splash_export.dart';
 import 'package:tax_return/feature/authentication/presentation/screens/login/login.dart';
 
 import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';

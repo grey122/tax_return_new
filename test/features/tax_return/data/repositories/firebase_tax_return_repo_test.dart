@@ -71,6 +71,9 @@ void main() {
     MockDocumentRefrence documentRefrenceB;
 
     final TaxReturn taxReturn = TaxReturn(taxName: taxName, id: taxId);
+    final TaxReturnBuilt taxReturnBuilt = TaxReturnBuilt((b) => b
+      ..taxName = taxName
+      ..id = taxId);
 
     setUp(() {
       //collectionReference = firebaseFirestore.collection('tax_return');
@@ -89,7 +92,7 @@ void main() {
           .thenReturn(collectionReference);
       when(collectionReference.doc(taxReturn.id)).thenReturn(documentReference);
 
-      await firebaseTaxReturnRepository.addNewTaxReturn(taxReturn);
+      await firebaseTaxReturnRepository.addNewTaxReturn(taxReturnBuilt);
 
       verify(collectionReference.add(taxReturn.toModel().toDocument()));
     });

@@ -3,7 +3,7 @@ import 'package:tax_return/feature/tax_return/data/model/model_export.dart';
 import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
 import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
 
-//TODO: implement the other test and logic
+//TODO: convert all this to built values
 class FirebaseTaxReturnRepository implements TaxReturnRepository {
   final FirebaseFirestore firebaseFirestore;
   static const String path = 'tax_return';
@@ -13,7 +13,7 @@ class FirebaseTaxReturnRepository implements TaxReturnRepository {
   FirebaseTaxReturnRepository(this.firebaseFirestore);
 
   @override
-  Future<void> addNewTaxReturn(TaxReturn taxReturn) {
+  Future<void> addNewTaxReturn(TaxReturnBuilt taxReturn) {
     return firebaseFirestore
         .collection(path)
         .add(taxReturn.toModel().toDocument());

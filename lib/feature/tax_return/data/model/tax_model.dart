@@ -9,7 +9,7 @@ class TaxReturnModel extends Equatable {
 
   TaxReturnModel({this.id, this.taxName});
 
-  Map<String, Object> toJSon() {
+  Map<String, Object> toJson() {
     return {
       "taxName": taxName,
       "id": id,

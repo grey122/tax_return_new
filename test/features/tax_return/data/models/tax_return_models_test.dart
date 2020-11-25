@@ -29,7 +29,7 @@ void main() {
       //note
       final Map<String, Object> _taxDocMap = {"taxName": taxName, "id": taxId};
 
-      expect(TaxReturnModel(id: taxId, taxName: taxName).toJSon(), _taxDocMap);
+      expect(TaxReturnModel(id: taxId, taxName: taxName).toJson(), _taxDocMap);
     });
 
     test(

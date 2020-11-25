@@ -33,6 +33,7 @@ dependencies:
   pedantic: ^1.9.0
   cloud_firestore: ^0.14.3
   rxdart: ^0.24.1
+  built_value: ^7.1.0
   authentication_repository:
     path: packages/authentication_repository
 
@@ -45,6 +46,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^4.0.0
+  build_runner: ^1.10.6
+  built_value_generator: ^7.1.0
+  #Todo remove the dependency overides when a better solution exist 
+dependency_overrides:
+  analyzer: 0.40.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

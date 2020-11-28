@@ -19,9 +19,6 @@ class _$TaxReturnBuilt extends TaxReturnBuilt {
     if (taxName == null) {
       throw new BuiltValueNullFieldError('TaxReturnBuilt', 'taxName');
     }
-    if (id == null) {
-      throw new BuiltValueNullFieldError('TaxReturnBuilt', 'id');
-    }
   }
 
   @override

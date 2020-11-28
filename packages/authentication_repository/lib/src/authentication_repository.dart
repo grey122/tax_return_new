@@ -12,6 +12,7 @@ import 'models/models.dart';
 //TODO: try to implement google account logged with a different user
 //TODO: reserach on how to deal with google network errors
 //TODO: test the excpetion call you decalerd
+//TODO: provide a message that displays when the user signes in with the same credentials
 
 /// Thrown if during the sign up process if a failure occurs.
 class SignUpFailure implements Exception {}

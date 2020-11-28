@@ -3,9 +3,9 @@ import 'package:tax_return/feature/tax_return/domain/entities/entities_export.da
 abstract class TaxReturnRepository {
   Future<void> addNewTaxReturn(TaxReturnBuilt taxReturn);
 
-  Future<void> deleteTaxReturn(TaxReturn taxReturn);
+  Future<void> deleteTaxReturn(TaxReturnBuilt taxReturn);
 
-  Stream<List<TaxReturn>> taxReturns();
+  Stream<List<TaxReturnBuilt>> taxReturns();
 
-  Future<void> updateTaxReturn(TaxReturn update);
+  Future<void> updateTaxReturn(TaxReturnBuilt update);
 }

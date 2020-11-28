@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
+import 'package:tax_return/feature/tax_return/presentation/logic/bloc/tax_return_cubit/tax_return_cubit.dart';
 import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';
 
+//TODO: tax today create user model
+//TODO: covert Tax return bloc to user model to userModel
+//TODO: link user name and email address to user model
 class HomePage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => HomePage());
   }
+
+  final taxReturn = TaxReturnBuilt((b) => b
+    ..taxName = "ass hole"
+    ..id = "the id");
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +32,48 @@ class HomePage extends StatelessWidget {
                 .bloc<AuthenticationBloc>()
                 .add(AuthenticationLogoutRequested()),
             //TODO: show dialogue box asking user if he really wants to logou
+          ),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () =>
+                context.bloc<TaxReturnCubit>().addTaxReturn(taxReturn),
           )
         ],
       ),
       body: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Avatar(photo: user.photo),
-            const SizedBox(height: 4.0),
-            Text(user.email, style: textTheme.headline6),
-            const SizedBox(height: 4.0),
-            Text(user.name ?? '', style: textTheme.headline5),
-          ],
-        ),
-      ),
+          alignment: const Alignment(0, -1 / 3),
+          child: BlocBuilder<TaxReturnCubit, TaxReturnState>(
+            builder: (context, state) {
+              if (state is TaxReturnLoading) {
+                return Container(
+                  child: Text('LOADING....'),
+                );
+              }
+              if (state is TaxReturnLoaded) {
+                return Container(
+                  child: Text(state.taxReturns[0].taxName),
+                );
+              }
+              return Container(
+                child: Text('not loaded'),
+              );
+            },
+          )),
     );
   }
 }
+
+// Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: <Widget>[
+//             Avatar(photo: user.photo),
+//             const SizedBox(height: 4.0),
+//             Text(user.email, style: textTheme.headline6),
+//             const SizedBox(height: 4.0),
+//             Text(user.name ?? '', style: textTheme.headline5),
+
+//           ],
+//         ),
 
 const _avatarSize = 48.0;
 
@@ -59,6 +90,17 @@ class Avatar extends StatelessWidget {
       child: photo == null
           ? const Icon(Icons.person_outline, size: _avatarSize)
           : null,
+    );
+  }
+}
+
+class AddTododEditText extends StatelessWidget {
+  const AddTododEditText({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: TextFormField(),
     );
   }
 }

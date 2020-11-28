@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
@@ -82,8 +83,14 @@ void main() {
 
       firebaseFirestore = MockFirebaseFireStore();
       documentReference = MockDocumentRefrence();
-      firebaseTaxReturnRepository =
-          FirebaseTaxReturnRepository(firebaseFirestore);
+      firebaseTaxReturnRepository = FirebaseTaxReturnRepository(
+          firebaseFirestore,
+          User(
+            id: '',
+            email: '',
+            name: '',
+            photo: '',
+          ));
       documentRefrenceB = MockDocumentRefrence();
     });
 
@@ -102,7 +109,7 @@ void main() {
           .thenReturn(collectionReference);
       when(collectionReference.doc(taxReturn.id)).thenReturn(documentReference);
 
-      await firebaseTaxReturnRepository.updateTaxReturn(taxReturn);
+      await firebaseTaxReturnRepository.updateTaxReturn(taxReturnBuilt);
 
       verify(documentReference.update(taxReturn.toModel().toDocument()));
     });

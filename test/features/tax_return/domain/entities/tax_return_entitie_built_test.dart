@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tax_return/feature/tax_return/data/model/model_export.dart';
+import 'package:tax_return/feature/tax_return/data/model/tax_return_model_built.dart';
 import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
 
 //for testting purpose
@@ -65,7 +66,9 @@ void main() {
     test(
         'return tax_return when fromenity is called passining to ir the entit constructor value',
         () {
-      final TaxReturnModel _model = TaxReturnModel(id: taxId, taxName: taxName);
+      final _model = TaxReturnModelBuilt((b) => b
+        ..taxName = taxName
+        ..id = taxId);
       expect(
           TaxReturnBuilt.fromModel(_model),
           TaxReturnBuilt((b) => b

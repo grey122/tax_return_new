@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tax_return/feature/tax_return/data/model/tax_return_model_built.dart';
 import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
 import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
 import 'dart:async';

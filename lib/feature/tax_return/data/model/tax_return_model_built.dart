@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tax_return/feature/tax_return/data/model/serializers.dart';
+import 'package:tax_return/feature/tax_return/data/model/serializers/serilizers_export.dart';
 
 part 'tax_return_model_built.g.dart';
 

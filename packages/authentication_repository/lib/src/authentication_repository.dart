@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:flutter/services.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';

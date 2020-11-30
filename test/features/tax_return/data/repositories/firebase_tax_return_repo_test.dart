@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tax_return/feature/tax_return/data/repositories/repositories_export.dart';
 import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
-import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
 
 class MocKCollectionRefrence extends Mock implements CollectionReference {}
 
@@ -69,9 +68,9 @@ void main() {
     FirebaseTaxReturnRepository firebaseTaxReturnRepository;
     MockFirebaseFireStore firebaseFirestore;
     MockDocumentRefrence documentReference;
-    MockDocumentRefrence documentRefrenceB;
+    //MockDocumentRefrence documentRefrenceB;
 
-    final TaxReturn taxReturn = TaxReturn(taxName: taxName, id: taxId);
+    //final TaxReturn taxReturn = TaxReturn(taxName: taxName, id: taxId);
     final TaxReturnBuilt taxReturnBuilt = TaxReturnBuilt((b) => b
       ..taxName = taxName
       ..id = taxId);
@@ -91,27 +90,29 @@ void main() {
             name: '',
             photo: '',
           ));
-      documentRefrenceB = MockDocumentRefrence();
+      //  documentRefrenceB = MockDocumentRefrence();
     });
 
     test('verify if add new todo is called', () async {
       when(firebaseFirestore.collection(FirebaseTaxReturnRepository.path))
           .thenReturn(collectionReference);
-      when(collectionReference.doc(taxReturn.id)).thenReturn(documentReference);
+      when(collectionReference.doc(taxReturnBuilt.id))
+          .thenReturn(documentReference);
 
       await firebaseTaxReturnRepository.addNewTaxReturn(taxReturnBuilt);
 
-      verify(collectionReference.add(taxReturn.toModel().toDocument()));
+      verify(collectionReference.add(taxReturnBuilt.toModel().toDocument()));
     });
 
     test('verify if update todo is called', () async {
       when(firebaseFirestore.collection(FirebaseTaxReturnRepository.path))
           .thenReturn(collectionReference);
-      when(collectionReference.doc(taxReturn.id)).thenReturn(documentReference);
+      when(collectionReference.doc(taxReturnBuilt.id))
+          .thenReturn(documentReference);
 
       await firebaseTaxReturnRepository.updateTaxReturn(taxReturnBuilt);
 
-      verify(documentReference.update(taxReturn.toModel().toDocument()));
+      verify(documentReference.update(taxReturnBuilt.toModel().toDocument()));
     });
 
 //FIXME write better test to check for updates to collection

@@ -1,12 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tax_return/feature/tax_return/data/model/model_export.dart';
 import 'package:tax_return/feature/tax_return/data/model/tax_return_model_built.dart';
 import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
 import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-//TODO: convert all this to built values
 class FirebaseTaxReturnRepository implements TaxReturnRepository {
   final FirebaseFirestore firebaseFirestore;
   final User user;

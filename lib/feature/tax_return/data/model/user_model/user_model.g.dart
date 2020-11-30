@@ -27,12 +27,10 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
       'taxReturnType',
       serializers.serialize(object.taxReturnType,
           specifiedType: const FullType(String)),
-      'companyCategory',
-      serializers.serialize(object.companyCategory,
-          specifiedType: const FullType(String)),
-      'isYearsOfOperation',
-      serializers.serialize(object.isYearsOfOperation,
-          specifiedType: const FullType(bool)),
+      'cityPage',
+      serializers.serialize(object.cityPage,
+          specifiedType: const FullType(BuiltMap,
+              const [const FullType(String), const FullType(Object)])),
     ];
     if (object.id != null) {
       result
@@ -80,13 +78,10 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           result.taxReturnType = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'companyCategory':
-          result.companyCategory = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'isYearsOfOperation':
-          result.isYearsOfOperation = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+        case 'cityPage':
+          result.cityPage.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltMap,
+                  const [const FullType(String), const FullType(Object)])));
           break;
       }
     }
@@ -107,9 +102,7 @@ class _$UserModel extends UserModel {
   @override
   final String taxReturnType;
   @override
-  final String companyCategory;
-  @override
-  final bool isYearsOfOperation;
+  final BuiltMap<String, Object> cityPage;
 
   factory _$UserModel([void Function(UserModelBuilder) updates]) =>
       (new UserModelBuilder()..update(updates)).build();
@@ -120,8 +113,7 @@ class _$UserModel extends UserModel {
       this.emailAddress,
       this.userContact,
       this.taxReturnType,
-      this.companyCategory,
-      this.isYearsOfOperation})
+      this.cityPage})
       : super._() {
     if (emailAddress == null) {
       throw new BuiltValueNullFieldError('UserModel', 'emailAddress');
@@ -132,11 +124,8 @@ class _$UserModel extends UserModel {
     if (taxReturnType == null) {
       throw new BuiltValueNullFieldError('UserModel', 'taxReturnType');
     }
-    if (companyCategory == null) {
-      throw new BuiltValueNullFieldError('UserModel', 'companyCategory');
-    }
-    if (isYearsOfOperation == null) {
-      throw new BuiltValueNullFieldError('UserModel', 'isYearsOfOperation');
+    if (cityPage == null) {
+      throw new BuiltValueNullFieldError('UserModel', 'cityPage');
     }
   }
 
@@ -156,8 +145,7 @@ class _$UserModel extends UserModel {
         emailAddress == other.emailAddress &&
         userContact == other.userContact &&
         taxReturnType == other.taxReturnType &&
-        companyCategory == other.companyCategory &&
-        isYearsOfOperation == other.isYearsOfOperation;
+        cityPage == other.cityPage;
   }
 
   @override
@@ -165,13 +153,11 @@ class _$UserModel extends UserModel {
     return $jf($jc(
         $jc(
             $jc(
-                $jc(
-                    $jc($jc($jc(0, id.hashCode), userName.hashCode),
-                        emailAddress.hashCode),
-                    userContact.hashCode),
-                taxReturnType.hashCode),
-            companyCategory.hashCode),
-        isYearsOfOperation.hashCode));
+                $jc($jc($jc(0, id.hashCode), userName.hashCode),
+                    emailAddress.hashCode),
+                userContact.hashCode),
+            taxReturnType.hashCode),
+        cityPage.hashCode));
   }
 
   @override
@@ -182,8 +168,7 @@ class _$UserModel extends UserModel {
           ..add('emailAddress', emailAddress)
           ..add('userContact', userContact)
           ..add('taxReturnType', taxReturnType)
-          ..add('companyCategory', companyCategory)
-          ..add('isYearsOfOperation', isYearsOfOperation))
+          ..add('cityPage', cityPage))
         .toString();
   }
 }
@@ -212,15 +197,11 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   set taxReturnType(String taxReturnType) =>
       _$this._taxReturnType = taxReturnType;
 
-  String _companyCategory;
-  String get companyCategory => _$this._companyCategory;
-  set companyCategory(String companyCategory) =>
-      _$this._companyCategory = companyCategory;
-
-  bool _isYearsOfOperation;
-  bool get isYearsOfOperation => _$this._isYearsOfOperation;
-  set isYearsOfOperation(bool isYearsOfOperation) =>
-      _$this._isYearsOfOperation = isYearsOfOperation;
+  MapBuilder<String, Object> _cityPage;
+  MapBuilder<String, Object> get cityPage =>
+      _$this._cityPage ??= new MapBuilder<String, Object>();
+  set cityPage(MapBuilder<String, Object> cityPage) =>
+      _$this._cityPage = cityPage;
 
   UserModelBuilder();
 
@@ -231,8 +212,7 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
       _emailAddress = _$v.emailAddress;
       _userContact = _$v.userContact;
       _taxReturnType = _$v.taxReturnType;
-      _companyCategory = _$v.companyCategory;
-      _isYearsOfOperation = _$v.isYearsOfOperation;
+      _cityPage = _$v.cityPage?.toBuilder();
       _$v = null;
     }
     return this;
@@ -253,15 +233,27 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
 
   @override
   _$UserModel build() {
-    final _$result = _$v ??
-        new _$UserModel._(
-            id: id,
-            userName: userName,
-            emailAddress: emailAddress,
-            userContact: userContact,
-            taxReturnType: taxReturnType,
-            companyCategory: companyCategory,
-            isYearsOfOperation: isYearsOfOperation);
+    _$UserModel _$result;
+    try {
+      _$result = _$v ??
+          new _$UserModel._(
+              id: id,
+              userName: userName,
+              emailAddress: emailAddress,
+              userContact: userContact,
+              taxReturnType: taxReturnType,
+              cityPage: cityPage.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'cityPage';
+        cityPage.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'UserModel', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

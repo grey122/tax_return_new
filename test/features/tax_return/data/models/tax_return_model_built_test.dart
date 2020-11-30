@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tax_return/feature/tax_return/data/model/tax_model.dart';
+
 import 'package:mockito/mockito.dart';
 import 'package:tax_return/feature/tax_return/data/model/tax_return_model_built.dart';
 
@@ -72,9 +72,9 @@ void main() {
             ..id = snapshot.id));
     });
 
-    test('check if TaxReturnModel.toDocument maps apporiately', () {
-      Map<String, Object> firebaseDocMap = {"taxName": taxName};
-      expect(TaxReturnModel(taxName: taxName).toDocument(), firebaseDocMap);
-    });
+    // test('check if TaxReturnModel.toDocument maps apporiately', () {
+    //   Map<String, Object> firebaseDocMap = {"taxName": taxName};
+    //   expect(TaxReturnModel(taxName: taxName).toDocument(), firebaseDocMap);
+    // });
   });
 }

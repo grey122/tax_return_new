@@ -18,9 +18,7 @@ class _$UserEntity extends UserEntity {
   @override
   final String taxReturnType;
   @override
-  final String companyCategory;
-  @override
-  final bool isYearsOfOperation;
+  final BuiltMap<String, Object> cityPage;
 
   factory _$UserEntity([void Function(UserEntityBuilder) updates]) =>
       (new UserEntityBuilder()..update(updates)).build();
@@ -31,9 +29,11 @@ class _$UserEntity extends UserEntity {
       this.emailAddress,
       this.userContact,
       this.taxReturnType,
-      this.companyCategory,
-      this.isYearsOfOperation})
+      this.cityPage})
       : super._() {
+    if (userName == null) {
+      throw new BuiltValueNullFieldError('UserEntity', 'userName');
+    }
     if (emailAddress == null) {
       throw new BuiltValueNullFieldError('UserEntity', 'emailAddress');
     }
@@ -43,11 +43,8 @@ class _$UserEntity extends UserEntity {
     if (taxReturnType == null) {
       throw new BuiltValueNullFieldError('UserEntity', 'taxReturnType');
     }
-    if (companyCategory == null) {
-      throw new BuiltValueNullFieldError('UserEntity', 'companyCategory');
-    }
-    if (isYearsOfOperation == null) {
-      throw new BuiltValueNullFieldError('UserEntity', 'isYearsOfOperation');
+    if (cityPage == null) {
+      throw new BuiltValueNullFieldError('UserEntity', 'cityPage');
     }
   }
 
@@ -67,8 +64,7 @@ class _$UserEntity extends UserEntity {
         emailAddress == other.emailAddress &&
         userContact == other.userContact &&
         taxReturnType == other.taxReturnType &&
-        companyCategory == other.companyCategory &&
-        isYearsOfOperation == other.isYearsOfOperation;
+        cityPage == other.cityPage;
   }
 
   @override
@@ -76,13 +72,11 @@ class _$UserEntity extends UserEntity {
     return $jf($jc(
         $jc(
             $jc(
-                $jc(
-                    $jc($jc($jc(0, id.hashCode), userName.hashCode),
-                        emailAddress.hashCode),
-                    userContact.hashCode),
-                taxReturnType.hashCode),
-            companyCategory.hashCode),
-        isYearsOfOperation.hashCode));
+                $jc($jc($jc(0, id.hashCode), userName.hashCode),
+                    emailAddress.hashCode),
+                userContact.hashCode),
+            taxReturnType.hashCode),
+        cityPage.hashCode));
   }
 
   @override
@@ -93,8 +87,7 @@ class _$UserEntity extends UserEntity {
           ..add('emailAddress', emailAddress)
           ..add('userContact', userContact)
           ..add('taxReturnType', taxReturnType)
-          ..add('companyCategory', companyCategory)
-          ..add('isYearsOfOperation', isYearsOfOperation))
+          ..add('cityPage', cityPage))
         .toString();
   }
 }
@@ -123,15 +116,11 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
   set taxReturnType(String taxReturnType) =>
       _$this._taxReturnType = taxReturnType;
 
-  String _companyCategory;
-  String get companyCategory => _$this._companyCategory;
-  set companyCategory(String companyCategory) =>
-      _$this._companyCategory = companyCategory;
-
-  bool _isYearsOfOperation;
-  bool get isYearsOfOperation => _$this._isYearsOfOperation;
-  set isYearsOfOperation(bool isYearsOfOperation) =>
-      _$this._isYearsOfOperation = isYearsOfOperation;
+  MapBuilder<String, Object> _cityPage;
+  MapBuilder<String, Object> get cityPage =>
+      _$this._cityPage ??= new MapBuilder<String, Object>();
+  set cityPage(MapBuilder<String, Object> cityPage) =>
+      _$this._cityPage = cityPage;
 
   UserEntityBuilder();
 
@@ -142,8 +131,7 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
       _emailAddress = _$v.emailAddress;
       _userContact = _$v.userContact;
       _taxReturnType = _$v.taxReturnType;
-      _companyCategory = _$v.companyCategory;
-      _isYearsOfOperation = _$v.isYearsOfOperation;
+      _cityPage = _$v.cityPage?.toBuilder();
       _$v = null;
     }
     return this;
@@ -164,15 +152,27 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
 
   @override
   _$UserEntity build() {
-    final _$result = _$v ??
-        new _$UserEntity._(
-            id: id,
-            userName: userName,
-            emailAddress: emailAddress,
-            userContact: userContact,
-            taxReturnType: taxReturnType,
-            companyCategory: companyCategory,
-            isYearsOfOperation: isYearsOfOperation);
+    _$UserEntity _$result;
+    try {
+      _$result = _$v ??
+          new _$UserEntity._(
+              id: id,
+              userName: userName,
+              emailAddress: emailAddress,
+              userContact: userContact,
+              taxReturnType: taxReturnType,
+              cityPage: cityPage.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'cityPage';
+        cityPage.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'UserEntity', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -60,7 +60,9 @@ void main() {
           TaxReturnBuilt((b) => b
             ..taxName = taxName
             ..id = taxId).toModel(),
-          TaxReturnModel(taxName: taxName, id: taxId));
+          TaxReturnModelBuilt((b) => b
+            ..taxName = taxName
+            ..id = taxId));
     });
 
     test(

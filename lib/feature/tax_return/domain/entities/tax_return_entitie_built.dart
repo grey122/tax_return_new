@@ -16,8 +16,12 @@ abstract class TaxReturnBuilt
   factory TaxReturnBuilt([Function(TaxReturnBuiltBuilder b) updates]) =
       _$TaxReturnBuilt;
 
-  TaxReturnModel toModel() {
-    return TaxReturnModel(taxName: taxName, id: id);
+  TaxReturnModelBuilt toModel() {
+    return TaxReturnModelBuilt(
+      (b) => b
+        ..id = id
+        ..taxName = taxName,
+    );
   }
 
   static TaxReturnBuilt fromModel(TaxReturnModelBuilt model) {

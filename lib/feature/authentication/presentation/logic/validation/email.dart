@@ -1,13 +1,9 @@
 import 'package:formz/formz.dart';
 import 'package:meta/meta.dart';
 
-//FIXME:implement your own validation rule and remove the formz validarion rule
-//TODO: learn the formz libary and check if its worth using 
-
 enum EmailValidationError { invalid }
 enum PasswordValidationError { invalid }
 enum ConfirmedPasswordValidationError { invalid }
-
 
 class Email extends FormzInput<String, EmailValidationError> {
   const Email.pure() : super.pure('');
@@ -19,10 +15,9 @@ class Email extends FormzInput<String, EmailValidationError> {
 
   @override
   EmailValidationError validator(String value) {
-       return _emailRegExp.hasMatch(value) ? null : EmailValidationError.invalid;
+    return _emailRegExp.hasMatch(value) ? null : EmailValidationError.invalid;
   }
 }
-
 
 class Password extends FormzInput<String, PasswordValidationError> {
   const Password.pure() : super.pure('');

@@ -17,7 +17,7 @@ class UserLoaded extends UserState {
   List<Object> get props => [users];
 
   @override
-  String toString() => 'TodosLoaded { todos: $users }';
+  String toString() => 'UserLoaded { user: $users }';
 }
 
 class UserDataNotLoaded extends UserState {}

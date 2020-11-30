@@ -4,6 +4,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tax_return/feature/tax_return/data/model/serializers/serilizers_export.dart';
+import 'package:built_collection/built_collection.dart';
 
 part 'user_model.g.dart';
 
@@ -14,9 +15,12 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String get userName;
   String get emailAddress;
   int get userContact;
+
   String get taxReturnType;
-  String get companyCategory;
-  bool get isYearsOfOperation;
+  //FIXME: this will later be the map of string
+  //String get companyCategory;
+  // bool get isYearsOfOperation;
+  BuiltMap<String, Object> get cityPage;
 
   // fields go here
 
@@ -33,15 +37,16 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
         UserModel.serializer, json.decode(jsonString));
   }
 
-  static UserModel fromSnapshot(DocumentSnapshot snap) {
+  factory UserModel.fromSnapshot(DocumentSnapshot snap) {
+    // final map = (snap.data()['citPage'] as BuiltMap).toBuilder();
     return UserModel((b) => b
       ..userName = snap.data()['user_name']
       ..emailAddress = snap.data()['email_address']
       ..userContact = snap.data()['user_contact']
-      ..companyCategory = snap.data()['company_category']
-      ..taxReturnType = snap.data()['cit.tax_return_type']
-      ..id = snap.id
-      ..isYearsOfOperation = snap.data()['cit.iis_years_of_operation']);
+      ..taxReturnType = snap.data()['tax_return_type']
+      ..cityPage =
+          new BuiltMap<String, Object>.from(snap.data()['citPage']).toBuilder()
+      ..id = snap.id);
   }
 
   Map<String, Object> toDocument() {
@@ -49,8 +54,8 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
       "user_name": userName,
       "email_address": emailAddress,
       "user_contact": userContact,
-      "cit.tax_return_type": taxReturnType,
-      "cit.is_years_of_operation": isYearsOfOperation
+      "tax_return_type": taxReturnType,
+      "citPage": cityPage.asMap()
     };
   }
 

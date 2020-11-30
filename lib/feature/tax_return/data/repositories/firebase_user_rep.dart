@@ -7,18 +7,18 @@ import 'package:tax_return/feature/tax_return/domain/repositories/repositories_e
 
 class FirebaseUserRepository implements UserRepository {
   final FirebaseFirestore firebaseFirestore;
-  final User user;
+  final User authUser;
   static const String path = 'tax_return';
 
   //final taxReturnCollection = FirebaseFirestore.instance.collection(path);
 
-  FirebaseUserRepository({this.firebaseFirestore, this.user});
+  FirebaseUserRepository({this.firebaseFirestore, this.authUser});
 
   @override
   Future<void> addNewUserData(UserEntity user) {
     return firebaseFirestore
         .collection(path)
-        .doc(user.id)
+        .doc(authUser.id)
         .collection('User')
         .add(user.toModel().toDocument());
   }
@@ -27,7 +27,7 @@ class FirebaseUserRepository implements UserRepository {
   Future<void> deleteUserData(UserEntity user) {
     return firebaseFirestore
         .collection(path)
-        .doc(user.id)
+        .doc(authUser.id)
         .collection('User')
         .doc(user.id)
         .delete();
@@ -37,7 +37,7 @@ class FirebaseUserRepository implements UserRepository {
   Stream<List<UserEntity>> users() {
     return firebaseFirestore
         .collection(path)
-        .doc(user.id)
+        .doc(authUser.id)
         .collection('User')
         .snapshots()
         .map((snapshot) {
@@ -51,7 +51,7 @@ class FirebaseUserRepository implements UserRepository {
   Future<void> updateUserData(UserEntity update) {
     return firebaseFirestore
         .collection(path)
-        .doc(user.id)
+        .doc(authUser.id)
         .collection('User')
         .doc(update.id)
         .update(update.toModel().toDocument());

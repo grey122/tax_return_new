@@ -5,10 +5,6 @@ import 'package:formz/formz.dart';
 import 'package:tax_return/feature/authentication/presentation/logic/bloc/bloc_export.dart';
 import 'package:tax_return/feature/authentication/presentation/screens/sign_up/sign_up_export.dart';
 
-//TODO: implemnt facebook lgin and signup
-//TODO: try to caputure all exceptions during logmin and
-//TODO: Fix Google sign in error
-
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

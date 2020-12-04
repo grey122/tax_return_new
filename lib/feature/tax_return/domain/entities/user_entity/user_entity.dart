@@ -12,7 +12,7 @@ abstract class UserEntity implements Built<UserEntity, UserEntityBuilder> {
 
   String get userName;
   String get emailAddress;
-  int get userContact;
+  String get userContact;
 
   String get taxReturnType;
   //FIXME: this will later be the map of string

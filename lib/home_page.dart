@@ -1,56 +1,46 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tax_return/feature/tax_return/domain/entities/entities_export.dart';
-import 'package:tax_return/feature/tax_return/presentation/logic/bloc/tax_return_cubit/tax_return_cubit.dart';
+import 'package:tax_return/feature/tax_return/presentation/widgets/widgets_exports.dart';
 import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';
-import 'feature/tax_return/domain/entities/user_entity/user_entity_export.dart';
-import 'feature/tax_return/presentation/logic/bloc/bloc_export.dart';
-import 'package:built_collection/built_collection.dart';
 
-//TODO: tax today create user model
-//TODO: covert Tax return bloc to user model to userModel
-//TODO: link user name and email address to user model
 //TODO: display firebase error when user goes offline
+
 class HomePage extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => HomePage());
   }
 
-  // final taxReturn = TaxReturnBuilt((b) => b
-  //   ..taxName = "ass hole"
-  //   ..id = "the id");
-
   @override
   Widget build(BuildContext context) {
     //final textTheme = Theme.of(context).textTheme;
-    final user = context.bloc<AuthenticationBloc>().state.user;
-    final usersData = UserEntity((b) => b
-      ..userName = user.name
-      ..emailAddress = user.email
-      ..userContact = 08033569154
-      ..taxReturnType = user.id
-      ..cityPage =
-          {'company category': 'banking and finace'}.build().toBuilder());
+    const backgroundColor = Color(0xFFFAFAFA);
+    const darkColor = Color(0xFF4B4B4B);
+
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Home'),
+        backgroundColor: backgroundColor,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: darkColor),
+          onPressed: () {},
+        ),
+        //FIXME: convert this to media query
+        title: const Text('TAXLIT',
+            style: TextStyle(
+                color: darkColor, fontSize: 17.0, fontWeight: FontWeight.bold)),
         actions: <Widget>[
           IconButton(
-            key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () => context
-                .bloc<AuthenticationBloc>()
-                .add(AuthenticationLogoutRequested()),
-            //TODO: show dialogue box asking user if he really wants to logou
-          ),
+              icon: Icon(Icons.notifications, color: darkColor),
+              onPressed: () {}),
           IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => context.bloc<UserBloc>().add(AddUser(usersData)),
-          )
+              icon: Icon(Icons.logout),
+              onPressed: () => context
+                  .bloc<AuthenticationBloc>()
+                  .add(AuthenticationLogoutRequested())),
         ],
       ),
-      body: Align(alignment: const Alignment(0, -1 / 3), child: null),
+      body: HomeWidget(),
     );
   }
 }
@@ -62,7 +52,7 @@ class HomePage extends StatelessWidget {
 //                   child: Text('LOADING....'),
 //                 );
 //               }
-//               //TODO: check when it is user not loaded
+
 //               if (state is UserLoaded) {
 //                 return Container(
 //                   //  child: Text('some data'),
@@ -86,6 +76,19 @@ class HomePage extends StatelessWidget {
 
 //           ],
 //         ),
+
+// IconButton(
+//             key: const Key('homePage_logout_iconButton'),
+//             icon: const Icon(Icons.exit_to_app),
+//             onPressed: () => context
+//                 .bloc<AuthenticationBloc>()
+//                 .add(AuthenticationLogoutRequested()),
+//             //TODO: show dialogue box asking user if he really wants to logou
+//           ),
+//           IconButton(
+//             icon: Icon(Icons.add),
+//             onPressed: () => context.bloc<UserBloc>().add(AddUser(usersData)),
+//           )
 
 const _avatarSize = 48.0;
 

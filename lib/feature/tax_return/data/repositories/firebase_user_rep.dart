@@ -14,13 +14,19 @@ class FirebaseUserRepository implements UserRepository {
 
   FirebaseUserRepository({this.firebaseFirestore, this.authUser});
 
+//  Stream<QuerySnapshot> get lists =>
+
+//TODO: remove the userParameter
   @override
-  Future<void> addNewUserData(UserEntity user) {
+  Future<void> addNewUserData({UserEntity user}) {
+    //   final firebaseUserr =  firebaseFirestore.collection(path).doc(authUser.id).collection('User').where(field);
+    final merge = SetOptions(merge: true);
     return firebaseFirestore
         .collection(path)
         .doc(authUser.id)
         .collection('User')
-        .add(user.toModel().toDocument());
+        .doc(authUser.id)
+        .set(user.toModel().toDocument(), merge);
   }
 
   @override
@@ -47,13 +53,15 @@ class FirebaseUserRepository implements UserRepository {
     });
   }
 
+//FIXME : remove this code
   @override
   Future<void> updateUserData(UserEntity update) {
+    final merge = SetOptions(merge: true);
     return firebaseFirestore
         .collection(path)
         .doc(authUser.id)
         .collection('User')
-        .doc(update.id)
-        .update(update.toModel().toDocument());
+        .doc(authUser.id)
+        .set(update.toModel().toDocument(), merge);
   }
 }

@@ -23,7 +23,7 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           specifiedType: const FullType(String)),
       'userContact',
       serializers.serialize(object.userContact,
-          specifiedType: const FullType(int)),
+          specifiedType: const FullType(String)),
       'taxReturnType',
       serializers.serialize(object.taxReturnType,
           specifiedType: const FullType(String)),
@@ -72,7 +72,7 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           break;
         case 'userContact':
           result.userContact = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(String)) as String;
           break;
         case 'taxReturnType':
           result.taxReturnType = serializers.deserialize(value,
@@ -98,7 +98,7 @@ class _$UserModel extends UserModel {
   @override
   final String emailAddress;
   @override
-  final int userContact;
+  final String userContact;
   @override
   final String taxReturnType;
   @override
@@ -188,9 +188,9 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String get emailAddress => _$this._emailAddress;
   set emailAddress(String emailAddress) => _$this._emailAddress = emailAddress;
 
-  int _userContact;
-  int get userContact => _$this._userContact;
-  set userContact(int userContact) => _$this._userContact = userContact;
+  String _userContact;
+  String get userContact => _$this._userContact;
+  set userContact(String userContact) => _$this._userContact = userContact;
 
   String _taxReturnType;
   String get taxReturnType => _$this._taxReturnType;

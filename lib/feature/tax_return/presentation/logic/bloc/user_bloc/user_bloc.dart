@@ -9,8 +9,6 @@ import 'package:tax_return/feature/tax_return/domain/repositories/repositories_e
 part 'user_event.dart';
 part 'user_state.dart';
 
-//TODO: pass the id in this bloc instead of in the ui
-
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _userRepository;
   StreamSubscription _userSubscription;
@@ -45,7 +43,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Stream<UserState> _mapAddUserToState(AddUser event) async* {
-    _userRepository.addNewUserData(event.user);
+    _userRepository.addNewUserData(user: event.userData);
   }
 
   Stream<UserState> _mapUpdateUserToState(UpdateUser event) async* {

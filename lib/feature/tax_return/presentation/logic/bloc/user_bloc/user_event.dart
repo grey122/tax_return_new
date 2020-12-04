@@ -10,15 +10,15 @@ abstract class UserEvent extends Equatable {
 class LoadUsers extends UserEvent {}
 
 class AddUser extends UserEvent {
-  final UserEntity user;
+  final UserEntity userData;
 
-  const AddUser(this.user);
-
-  @override
-  List<Object> get props => [user];
+  const AddUser({this.userData});
 
   @override
-  String toString() => 'AddTodo { todo: $user }';
+  List<Object> get props => [userData];
+
+  @override
+  String toString() => 'AddUser { userdata: $userData }';
 }
 
 class UpdateUser extends UserEvent {

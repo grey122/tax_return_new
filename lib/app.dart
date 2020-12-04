@@ -64,6 +64,7 @@ class _AppViewState extends State<AppView> {
               listener: (context, state) {
                 switch (state.status) {
                   case AuthenticationStatus.authenticated:
+                    //  context.bloc<UserBloc>().add(AddUser());
                     _navigator.pushAndRemoveUntil<void>(
                       HomePage.route(),
                       (route) => false,

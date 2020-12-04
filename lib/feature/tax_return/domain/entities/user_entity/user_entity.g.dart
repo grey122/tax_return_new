@@ -14,7 +14,7 @@ class _$UserEntity extends UserEntity {
   @override
   final String emailAddress;
   @override
-  final int userContact;
+  final String userContact;
   @override
   final String taxReturnType;
   @override
@@ -107,9 +107,9 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
   String get emailAddress => _$this._emailAddress;
   set emailAddress(String emailAddress) => _$this._emailAddress = emailAddress;
 
-  int _userContact;
-  int get userContact => _$this._userContact;
-  set userContact(int userContact) => _$this._userContact = userContact;
+  String _userContact;
+  String get userContact => _$this._userContact;
+  set userContact(String userContact) => _$this._userContact = userContact;
 
   String _taxReturnType;
   String get taxReturnType => _$this._taxReturnType;

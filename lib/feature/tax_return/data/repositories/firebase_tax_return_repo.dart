@@ -39,7 +39,8 @@ class FirebaseTaxReturnRepository implements TaxReturnRepository {
         .collection(path)
         .doc(user.id)
         .collection('User')
-        .snapshots()
+        .get()
+        .asStream()
         .map((snapshot) {
       return snapshot.docs
           .map((doc) =>

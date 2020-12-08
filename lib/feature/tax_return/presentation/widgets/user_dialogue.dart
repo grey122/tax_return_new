@@ -3,7 +3,9 @@ import 'package:tax_return/feature/tax_return/presentation/logic/bloc/bloc_expor
 import 'package:tax_return/feature/tax_return/presentation/logic/logic_export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tax_return/feature/tax_return/presentation/logic/constants/constants_export.dart';
+import 'package:tax_return/feature/tax_return/presentation/screens/cit_page.dart';
 
+//TODO: fix the dialogu : it dosent remove when sumbit is clickdd
 class UserDataEditDialogue extends StatelessWidget {
   final String labelText;
   final ValueChanged<String> onSubmit;
@@ -57,8 +59,7 @@ class UserTaxReturnDialog extends StatelessWidget {
     TaxReturnType personalIncomeTax = TaxReturnType.personalIcomeTax;
     return Dialog(
       //  insetPadding: EdgeInsets.only(bottom: 500),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0)), //this right here
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Container(
         height: 300.0,
         width: 300.0,
@@ -93,11 +94,16 @@ class UserTaxReturnDialog extends StatelessWidget {
                     builder: (BuildContext context) => UserDataEditDialogue(
                           labelText: 'Company name',
                           onSubmit: (userData) {
-                            final userName =
-                                entity.rebuild((b) => b..userName = userData);
-                            return context
+                            final userName = userEntity(context)
+                                .rebuild((b) => b..userName = userData);
+                            //TODO conver the user name to company nam when user name is declared
+                            context
                                 .bloc<UserBloc>()
                                 .add(AddUser(userData: userName));
+                            //TODO: user cant go back when the citypage is returned
+                            return Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    CitPage(companyName: userData)));
                           },
                         ));
               },

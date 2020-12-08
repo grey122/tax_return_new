@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tax_return/feature/tax_return/presentation/logic/bloc/bloc_export.dart';
 import 'package:tax_return/feature/tax_return/presentation/widgets/widgets_exports.dart';
 import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';
+import 'feature/tax_return/domain/entities/entities_export.dart';
+import 'feature/tax_return/presentation/logic/constants/colors_constant.dart';
 
 //TODO: display firebase error when user goes offline
 
@@ -14,8 +18,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final textTheme = Theme.of(context).textTheme;
-    const backgroundColor = Color(0xFFFAFAFA);
-    const darkColor = Color(0xFF4B4B4B);
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -32,9 +34,28 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.notifications, color: darkColor),
-              onPressed: () {}),
+              onPressed: () {
+                DateTime currentPhoneDate = DateTime.now();
+
+                Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
+                TaxReturnBuilt taxes = TaxReturnBuilt((b) => b
+                  ..balanceAdjustment = 100000
+                  ..capitalAllowance = 1000
+                  ..dissallowedExpenses = 2000
+                  ..generalAdminExpenses = 3000
+                  ..grossProfit = 40000
+                  ..grossRevenue = 6000
+                  ..noTaxableProfit = 8000
+                  ..paidCapital = 5000
+                  ..predictedTax = 80000
+                  ..currentDate = myTimeStamp);
+                context.bloc<TaxReturnCubit>().addTaxReturn(taxes);
+              }),
           IconButton(
-              icon: Icon(Icons.logout),
+              icon: Icon(
+                Icons.logout,
+                color: darkColor,
+              ),
               onPressed: () => context
                   .bloc<AuthenticationBloc>()
                   .add(AuthenticationLogoutRequested())),

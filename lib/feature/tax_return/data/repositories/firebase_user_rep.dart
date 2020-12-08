@@ -5,6 +5,7 @@ import 'package:tax_return/feature/tax_return/data/model/user_model/user_model_e
 import 'package:tax_return/feature/tax_return/domain/entities/user_entity/user_entity.dart';
 import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
 
+//implement a network provider
 class FirebaseUserRepository implements UserRepository {
   final FirebaseFirestore firebaseFirestore;
   final User authUser;

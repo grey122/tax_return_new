@@ -18,7 +18,7 @@ class _$UserEntity extends UserEntity {
   @override
   final String taxReturnType;
   @override
-  final BuiltMap<String, Object> cityPage;
+  final BuiltMap<String, Object> citPage;
 
   factory _$UserEntity([void Function(UserEntityBuilder) updates]) =>
       (new UserEntityBuilder()..update(updates)).build();
@@ -29,7 +29,7 @@ class _$UserEntity extends UserEntity {
       this.emailAddress,
       this.userContact,
       this.taxReturnType,
-      this.cityPage})
+      this.citPage})
       : super._() {
     if (userName == null) {
       throw new BuiltValueNullFieldError('UserEntity', 'userName');
@@ -43,8 +43,8 @@ class _$UserEntity extends UserEntity {
     if (taxReturnType == null) {
       throw new BuiltValueNullFieldError('UserEntity', 'taxReturnType');
     }
-    if (cityPage == null) {
-      throw new BuiltValueNullFieldError('UserEntity', 'cityPage');
+    if (citPage == null) {
+      throw new BuiltValueNullFieldError('UserEntity', 'citPage');
     }
   }
 
@@ -64,7 +64,7 @@ class _$UserEntity extends UserEntity {
         emailAddress == other.emailAddress &&
         userContact == other.userContact &&
         taxReturnType == other.taxReturnType &&
-        cityPage == other.cityPage;
+        citPage == other.citPage;
   }
 
   @override
@@ -76,7 +76,7 @@ class _$UserEntity extends UserEntity {
                     emailAddress.hashCode),
                 userContact.hashCode),
             taxReturnType.hashCode),
-        cityPage.hashCode));
+        citPage.hashCode));
   }
 
   @override
@@ -87,7 +87,7 @@ class _$UserEntity extends UserEntity {
           ..add('emailAddress', emailAddress)
           ..add('userContact', userContact)
           ..add('taxReturnType', taxReturnType)
-          ..add('cityPage', cityPage))
+          ..add('citPage', citPage))
         .toString();
   }
 }
@@ -116,11 +116,10 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
   set taxReturnType(String taxReturnType) =>
       _$this._taxReturnType = taxReturnType;
 
-  MapBuilder<String, Object> _cityPage;
-  MapBuilder<String, Object> get cityPage =>
-      _$this._cityPage ??= new MapBuilder<String, Object>();
-  set cityPage(MapBuilder<String, Object> cityPage) =>
-      _$this._cityPage = cityPage;
+  MapBuilder<String, Object> _citPage;
+  MapBuilder<String, Object> get citPage =>
+      _$this._citPage ??= new MapBuilder<String, Object>();
+  set citPage(MapBuilder<String, Object> citPage) => _$this._citPage = citPage;
 
   UserEntityBuilder();
 
@@ -131,7 +130,7 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
       _emailAddress = _$v.emailAddress;
       _userContact = _$v.userContact;
       _taxReturnType = _$v.taxReturnType;
-      _cityPage = _$v.cityPage?.toBuilder();
+      _citPage = _$v.citPage?.toBuilder();
       _$v = null;
     }
     return this;
@@ -161,12 +160,12 @@ class UserEntityBuilder implements Builder<UserEntity, UserEntityBuilder> {
               emailAddress: emailAddress,
               userContact: userContact,
               taxReturnType: taxReturnType,
-              cityPage: cityPage.build());
+              citPage: citPage.build());
     } catch (_) {
       String _$failedField;
       try {
-        _$failedField = 'cityPage';
-        cityPage.build();
+        _$failedField = 'citPage';
+        citPage.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'UserEntity', _$failedField, e.toString());

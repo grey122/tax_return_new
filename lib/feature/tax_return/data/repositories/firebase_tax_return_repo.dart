@@ -5,43 +5,32 @@ import 'package:tax_return/feature/tax_return/domain/entities/entities_export.da
 import 'package:tax_return/feature/tax_return/domain/repositories/repositories_export.dart';
 
 class FirebaseTaxReturnRepository implements TaxReturnRepository {
+  FirebaseTaxReturnRepository(this.firebaseFirestore, this.user);
+
   final FirebaseFirestore firebaseFirestore;
   final User user;
-  static const String path = 'tax_return';
+  static const String PATH = 'tax_return';
+  static const String TAX_PATH = 'tax_return_data';
 
-  //final taxReturnCollection = FirebaseFirestore.instance.collection(path);
-
-  FirebaseTaxReturnRepository(this.firebaseFirestore, this.user);
+  // final taxReturnCollection = FirebaseFirestore.instance.collection(path);
+  CollectionReference get taxReturnCollection =>
+      firebaseFirestore.collection(PATH).doc(user.id).collection(TAX_PATH);
 
   @override
   Future<void> addNewTaxReturn(TaxReturnBuilt taxReturn) {
-    return firebaseFirestore
-        .collection(path)
-        .doc(user.id)
-        .collection('User')
-        .add(taxReturn.toModel().toDocument());
+    return taxReturnCollection.add(taxReturn.toModel().toDocument());
   }
 
   @override
   Future<void> deleteTaxReturn(TaxReturnBuilt taxReturn) {
-    return firebaseFirestore
-        .collection(path)
-        .doc(user.id)
-        .collection('User')
-        .doc(taxReturn.id)
-        .delete();
+    return taxReturnCollection.doc(taxReturn.id).delete();
   }
 
+//TODO: try the get() instead of snapshot()
   @override
   Stream<List<TaxReturnBuilt>> taxReturns() {
     print('user id is ${user.id}');
-    return firebaseFirestore
-        .collection(path)
-        .doc(user.id)
-        .collection('User')
-        .get()
-        .asStream()
-        .map((snapshot) {
+    return taxReturnCollection.snapshots().map((snapshot) {
       return snapshot.docs
           .map((doc) =>
               TaxReturnBuilt.fromModel(TaxReturnModelBuilt.fromSnapshot(doc)))
@@ -51,10 +40,7 @@ class FirebaseTaxReturnRepository implements TaxReturnRepository {
 
   @override
   Future<void> updateTaxReturn(TaxReturnBuilt update) {
-    return firebaseFirestore
-        .collection(path)
-        .doc(user.id)
-        .collection('User')
+    return taxReturnCollection
         .doc(update.id)
         .update(update.toModel().toDocument());
   }

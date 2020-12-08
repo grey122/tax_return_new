@@ -13,12 +13,11 @@ abstract class UserEntity implements Built<UserEntity, UserEntityBuilder> {
   String get userName;
   String get emailAddress;
   String get userContact;
-
   String get taxReturnType;
   //FIXME: this will later be the map of string
   //String get companyCategory;
   // bool get isYearsOfOperation;
-  BuiltMap<String, Object> get cityPage;
+  BuiltMap<String, Object> get citPage;
 
   UserEntity._();
 
@@ -31,7 +30,7 @@ abstract class UserEntity implements Built<UserEntity, UserEntityBuilder> {
       ..emailAddress = emailAddress
       ..userContact = userContact
       ..taxReturnType = taxReturnType
-      ..cityPage = cityPage.toBuilder());
+      ..citPage = citPage.toBuilder());
   }
 
   static UserEntity fromModel(UserModel model) {
@@ -40,7 +39,7 @@ abstract class UserEntity implements Built<UserEntity, UserEntityBuilder> {
       ..emailAddress = model.emailAddress
       ..id = model.id
       ..userContact = model.userContact
-      ..cityPage = model.cityPage.toBuilder()
+      ..citPage = model.citPage.toBuilder()
       ..taxReturnType = model.taxReturnType);
   }
 }

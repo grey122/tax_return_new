@@ -7,6 +7,7 @@ import 'package:tax_return/feature/tax_return/presentation/logic/bloc/bloc_expor
 
 import 'package:tax_return/feature/tax_return/presentation/widgets/widgets_exports.dart';
 import 'package:tax_return/feature/tax_return/presentation/logic/constants/constants_export.dart';
+import 'package:built_collection/built_collection.dart';
 
 //TODO: cretae dialogue and put the remaining details
 //TODO: when user choose {TaxReturnType.value} the label in the text should change
@@ -114,7 +115,7 @@ class UserProfile extends StatelessWidget {
                               builder: (BuildContext context) =>
                                   UserDataEditDialogue(
                                 onSubmit: (userData) {
-                                  final userName = entity
+                                  final userName = userEntity(context)
                                       .rebuild((b) => b..userName = userData);
                                   return context
                                       .bloc<UserBloc>()
@@ -131,22 +132,20 @@ class UserProfile extends StatelessWidget {
                   UserInputData(
                     hintText: 'Email Address',
                     mainText: (userData is UserEntity)
-                        ? state.users[0].emailAddress == ''
-                            ? user.email
-                            : state.users[0].emailAddress
+                        ? state.users[0].emailAddress
                         : user.email,
                     onPressed: () {
                       return showDialog(
                         context: context,
                         builder: (BuildContext context) => UserDataEditDialogue(
                           onSubmit: (userData) {
-                            final userName = entity
+                            final userName = userEntity(context)
                                 .rebuild((b) => b..emailAddress = userData);
                             return context
                                 .bloc<UserBloc>()
                                 .add(AddUser(userData: userName));
                           },
-                          labelText: 'User Name',
+                          labelText: 'Email Address',
                         ),
                       );
                     },
@@ -161,13 +160,13 @@ class UserProfile extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) => UserDataEditDialogue(
                           onSubmit: (userData) {
-                            final userName = entity
+                            final userName = userEntity(context)
                                 .rebuild((b) => b..userContact = userData);
                             return context
                                 .bloc<UserBloc>()
                                 .add(AddUser(userData: userName));
                           },
-                          labelText: 'User Name',
+                          labelText: 'Phone number',
                         ),
                       );
                     },

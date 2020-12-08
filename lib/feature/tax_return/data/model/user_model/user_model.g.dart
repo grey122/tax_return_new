@@ -27,8 +27,8 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
       'taxReturnType',
       serializers.serialize(object.taxReturnType,
           specifiedType: const FullType(String)),
-      'cityPage',
-      serializers.serialize(object.cityPage,
+      'citPage',
+      serializers.serialize(object.citPage,
           specifiedType: const FullType(BuiltMap,
               const [const FullType(String), const FullType(Object)])),
     ];
@@ -78,8 +78,8 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           result.taxReturnType = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'cityPage':
-          result.cityPage.replace(serializers.deserialize(value,
+        case 'citPage':
+          result.citPage.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltMap,
                   const [const FullType(String), const FullType(Object)])));
           break;
@@ -102,7 +102,7 @@ class _$UserModel extends UserModel {
   @override
   final String taxReturnType;
   @override
-  final BuiltMap<String, Object> cityPage;
+  final BuiltMap<String, Object> citPage;
 
   factory _$UserModel([void Function(UserModelBuilder) updates]) =>
       (new UserModelBuilder()..update(updates)).build();
@@ -113,7 +113,7 @@ class _$UserModel extends UserModel {
       this.emailAddress,
       this.userContact,
       this.taxReturnType,
-      this.cityPage})
+      this.citPage})
       : super._() {
     if (emailAddress == null) {
       throw new BuiltValueNullFieldError('UserModel', 'emailAddress');
@@ -124,8 +124,8 @@ class _$UserModel extends UserModel {
     if (taxReturnType == null) {
       throw new BuiltValueNullFieldError('UserModel', 'taxReturnType');
     }
-    if (cityPage == null) {
-      throw new BuiltValueNullFieldError('UserModel', 'cityPage');
+    if (citPage == null) {
+      throw new BuiltValueNullFieldError('UserModel', 'citPage');
     }
   }
 
@@ -145,7 +145,7 @@ class _$UserModel extends UserModel {
         emailAddress == other.emailAddress &&
         userContact == other.userContact &&
         taxReturnType == other.taxReturnType &&
-        cityPage == other.cityPage;
+        citPage == other.citPage;
   }
 
   @override
@@ -157,7 +157,7 @@ class _$UserModel extends UserModel {
                     emailAddress.hashCode),
                 userContact.hashCode),
             taxReturnType.hashCode),
-        cityPage.hashCode));
+        citPage.hashCode));
   }
 
   @override
@@ -168,7 +168,7 @@ class _$UserModel extends UserModel {
           ..add('emailAddress', emailAddress)
           ..add('userContact', userContact)
           ..add('taxReturnType', taxReturnType)
-          ..add('cityPage', cityPage))
+          ..add('citPage', citPage))
         .toString();
   }
 }
@@ -197,11 +197,10 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   set taxReturnType(String taxReturnType) =>
       _$this._taxReturnType = taxReturnType;
 
-  MapBuilder<String, Object> _cityPage;
-  MapBuilder<String, Object> get cityPage =>
-      _$this._cityPage ??= new MapBuilder<String, Object>();
-  set cityPage(MapBuilder<String, Object> cityPage) =>
-      _$this._cityPage = cityPage;
+  MapBuilder<String, Object> _citPage;
+  MapBuilder<String, Object> get citPage =>
+      _$this._citPage ??= new MapBuilder<String, Object>();
+  set citPage(MapBuilder<String, Object> citPage) => _$this._citPage = citPage;
 
   UserModelBuilder();
 
@@ -212,7 +211,7 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
       _emailAddress = _$v.emailAddress;
       _userContact = _$v.userContact;
       _taxReturnType = _$v.taxReturnType;
-      _cityPage = _$v.cityPage?.toBuilder();
+      _citPage = _$v.citPage?.toBuilder();
       _$v = null;
     }
     return this;
@@ -242,12 +241,12 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
               emailAddress: emailAddress,
               userContact: userContact,
               taxReturnType: taxReturnType,
-              cityPage: cityPage.build());
+              citPage: citPage.build());
     } catch (_) {
       String _$failedField;
       try {
-        _$failedField = 'cityPage';
-        cityPage.build();
+        _$failedField = 'citPage';
+        citPage.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'UserModel', _$failedField, e.toString());

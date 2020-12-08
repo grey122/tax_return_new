@@ -15,12 +15,9 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String get userName;
   String get emailAddress;
   String get userContact;
-
   String get taxReturnType;
-  //FIXME: this will later be the map of string
-  //String get companyCategory;
-  // bool get isYearsOfOperation;
-  BuiltMap<String, Object> get cityPage;
+
+  BuiltMap<String, Object> get citPage;
 
   // fields go here
 
@@ -38,13 +35,12 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snap) {
-    // final map = (snap.data()['citPage'] as BuiltMap).toBuilder();
     return UserModel((b) => b
       ..userName = snap.data()['user_name']
       ..emailAddress = snap.data()['email_address']
       ..userContact = snap.data()['user_contact']
       ..taxReturnType = snap.data()['tax_return_type']
-      ..cityPage =
+      ..citPage =
           new BuiltMap<String, Object>.from(snap.data()['citPage']).toBuilder()
       ..id = snap.id);
   }
@@ -55,7 +51,7 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
       "email_address": emailAddress,
       "user_contact": userContact,
       "tax_return_type": taxReturnType,
-      "citPage": cityPage.asMap()
+      "citPage": citPage.asMap()
     };
   }
 

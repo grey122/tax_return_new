@@ -1,11 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tax_return/core/core_export.dart';
 import 'package:tax_return/feature/tax_return/presentation/logic/bloc/bloc_export.dart';
+import 'package:tax_return/feature/tax_return/presentation/screens/createTaxData.dart';
 import 'package:tax_return/feature/tax_return/presentation/screens/taxReturnMonth.dart';
 import 'package:tax_return/feature/tax_return/presentation/widgets/taxes_chart.dart';
-
+import 'package:intl/intl.dart';
+//TODO: convert the digits to currency 
 //TODO: convert the text to text theme
 //TODO: use a font package
 //TODO: refactory you code to prompte reuse
@@ -13,6 +14,7 @@ import 'package:tax_return/feature/tax_return/presentation/widgets/taxes_chart.d
 //current implementation
 
 //TODO: display cit monthly tax in homepepage
+
 class HomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,8 @@ class HomeWidget extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 40),
                               child: Text(
                                 //add taxreturn value here
-                                '₦50,000',
+                                //FIXME: pull this data for database
+                                '',
                                 style: TextStyle(
                                   color: const Color(0xFF202020),
                                   fontWeight: FontWeight.w300,
@@ -89,23 +92,31 @@ class HomeWidget extends StatelessWidget {
                               );
                             }
                             if (state is TaxReturnLoaded) {
-                              //TODO: refactor the date widget
-
                               return Container(
                                 height: height * 0.4,
                                 child: ListView.builder(
                                   itemCount: state.taxReturns.length,
                                   itemBuilder: (context, index) {
+                                    final taxDate = state
+                                        .taxReturns[index].currentDate
+                                        .toDate();
+                                    final formatedTaxDate =
+                                        DateFormat.yMMMd().format(taxDate);
                                     //FIXME: refactor this code
                                     return RecentTaxReturns(
                                       predictedTaxReturnAmount: state
                                           .taxReturns[index].predictedTax
                                           .toString(),
-                                      taxDate: state
-                                          .taxReturns[index].currentDate
-                                          .toDate()
-                                          .toString(),
+                                      taxDate: formatedTaxDate.toString(),
                                       key: Key('__recentTaxReturns($index)__'),
+                                      onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => TaxReturnMonth(
+                                            index: index,
+                                            date: formatedTaxDate.toString(),
+                                          ),
+                                        ),
+                                      ),
                                     );
                                   },
                                 ),
@@ -120,21 +131,32 @@ class HomeWidget extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 130, right: 130, top: 150),
+                    child: Container(
+                      width: width * 0.33,
                       child: RaisedButton(
                         onPressed: () {
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (context) =>
-                          //         CitPage(companyName: 'First Bank')));
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (context) => UserProfile()));
-
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => TaxReturnMonth()));
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => CreateTaxReturn(
+                                isEditing: false,
+                              ),
+                            ),
+                          );
                         },
-                        child: Row(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(Icons.book, color: Colors.white),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'New Tax',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: width * 0.03),
+                            )
+                          ],
+                        ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(19.0),
                         ),
@@ -156,10 +178,13 @@ class HomeWidget extends StatelessWidget {
 class RecentTaxReturns extends StatelessWidget {
   final String taxDate;
   final String predictedTaxReturnAmount;
+  final Function() onTap;
+
   const RecentTaxReturns({
     @required Key key,
     @required this.taxDate,
     @required this.predictedTaxReturnAmount,
+    @required this.onTap,
   }) : super(key: key);
 
   @override
@@ -167,7 +192,7 @@ class RecentTaxReturns extends StatelessWidget {
     //FIXME: convert to list view
     return Ink(
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20.0),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [

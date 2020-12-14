@@ -6,11 +6,17 @@ import 'package:tax_return/feature/tax_return/presentation/logic/constants/color
 
 //TODO: implement eneter text screen
 //TODO: imlemnet descision so that profile wont be called multiple times(IF DATABASE.USER IS NULL, SHOW PROFILE PAGE )
-//TODO: display cittax details in page
 
-//TODO: peform query for mothly tax with date
 class TaxReturnMonth extends StatelessWidget {
-  const TaxReturnMonth({Key key}) : super(key: key);
+  //TODO: add date parameter here
+  final int index;
+  final String date;
+
+  const TaxReturnMonth({
+    Key key,
+    @required this.index,
+    @required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class TaxReturnMonth extends StatelessWidget {
         iconTheme: IconThemeData(color: darkColor),
         backgroundColor: backgroundColor,
         title: Text(
-          'July 2020',
+          date,
           style: TextStyle(color: darkColor),
         ),
         actions: [
@@ -46,6 +52,7 @@ class TaxReturnMonth extends StatelessWidget {
         if (state is TaxReturnLoading) {
           return CircularLoadingIndactor();
         } else if (state is TaxReturnLoaded) {
+          final taxReturn = state.taxReturns[index];
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,25 +82,24 @@ class TaxReturnMonth extends StatelessWidget {
                         ),
                       ),
                       //TODO: change all these
+
                       TaxReturnMonthList(
+                        onTap: () {},
                         taxReturnFieldName: 'Gross Revenue',
-                        taxReturnFieldAmount:
-                            state.taxReturns[0].grossRevenue.toString(),
+                        taxReturnFieldAmount: taxReturn.grossRevenue.toString(),
                       ),
                       TaxReturnMonthList(
                         taxReturnFieldName: 'Gross Profit',
                         taxReturnFieldAmount:
-                            state.taxReturns[0].capitalAllowance.toString(),
+                            taxReturn.capitalAllowance.toString(),
                       ),
                       TaxReturnMonthList(
                         taxReturnFieldName: 'Net Profit',
-                        taxReturnFieldAmount:
-                            state.taxReturns[0].predictedTax.toString(),
+                        taxReturnFieldAmount: taxReturn.predictedTax.toString(),
                       ),
                       TaxReturnMonthList(
                         taxReturnFieldName: 'Taxable Profit',
-                        taxReturnFieldAmount:
-                            state.taxReturns[0].grossRevenue.toString(),
+                        taxReturnFieldAmount: taxReturn.grossRevenue.toString(),
                       ),
                     ],
                   ),
@@ -111,15 +117,17 @@ class TaxReturnMonth extends StatelessWidget {
 class TaxReturnMonthList extends StatelessWidget {
   final String taxReturnFieldName;
   final String taxReturnFieldAmount;
+  final Function() onTap;
   const TaxReturnMonthList({
     Key key,
     @required this.taxReturnFieldName,
     @required this.taxReturnFieldAmount,
+    @required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    //final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {},

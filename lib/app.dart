@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tax_return/feature/tax_return/data/repositories/firebase_tax_return_repo.dart';
 
 import 'package:tax_return/feature/tax_return/data/repositories/firebase_user_rep.dart';
+import 'package:tax_return/feature/tax_return/presentation/logic/constants/colors_constant.dart';
 
 import 'package:tax_return/home_page.dart';
 import 'package:tax_return/core/splash/splash_export.dart';
@@ -49,8 +50,7 @@ class _AppViewState extends State<AppView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //TODO: implelment a better theme for the app after the design is done
-      theme: ThemeData.light(),
+      theme: ThemeData(backgroundColor: backgroundColor),
       navigatorKey: _navigatorKey,
       builder: (context, child) {
         return MultiBlocProvider(

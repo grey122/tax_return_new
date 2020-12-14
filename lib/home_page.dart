@@ -7,6 +7,7 @@ import 'package:tax_return/feature/tax_return/presentation/widgets/widgets_expor
 import 'feature/authentication/presentation/logic/bloc/bloc_export.dart';
 import 'feature/tax_return/domain/entities/entities_export.dart';
 import 'feature/tax_return/presentation/logic/constants/colors_constant.dart';
+import 'feature/tax_return/presentation/screens/screens_export.dart';
 
 //TODO: display firebase error when user goes offline
 
@@ -33,23 +34,10 @@ class HomePage extends StatelessWidget {
                 color: darkColor, fontSize: 17.0, fontWeight: FontWeight.bold)),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.notifications, color: darkColor),
+              icon: Icon(Icons.person, color: darkColor),
               onPressed: () {
-                DateTime currentPhoneDate = DateTime.now();
-
-                Timestamp myTimeStamp = Timestamp.fromDate(currentPhoneDate);
-                TaxReturnBuilt taxes = TaxReturnBuilt((b) => b
-                  ..balanceAdjustment = 100000
-                  ..capitalAllowance = 1000
-                  ..dissallowedExpenses = 2000
-                  ..generalAdminExpenses = 3000
-                  ..grossProfit = 40000
-                  ..grossRevenue = 6000
-                  ..noTaxableProfit = 8000
-                  ..paidCapital = 5000
-                  ..predictedTax = 80000
-                  ..currentDate = myTimeStamp);
-                context.bloc<TaxReturnCubit>().addTaxReturn(taxes);
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => UserProfile()));
               }),
           IconButton(
               icon: Icon(

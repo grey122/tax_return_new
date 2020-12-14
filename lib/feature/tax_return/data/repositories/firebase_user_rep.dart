@@ -17,7 +17,6 @@ class FirebaseUserRepository implements UserRepository {
 
 //  Stream<QuerySnapshot> get lists =>
 
-//TODO: remove the userParameter
   @override
   Future<void> addNewUserData({UserEntity user}) {
     //   final firebaseUserr =  firebaseFirestore.collection(path).doc(authUser.id).collection('User').where(field);

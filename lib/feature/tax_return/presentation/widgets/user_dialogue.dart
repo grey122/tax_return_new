@@ -8,13 +8,20 @@ import 'package:tax_return/feature/tax_return/presentation/screens/cit_page.dart
 //TODO: fix the dialogu : it dosent remove when sumbit is clickdd
 class UserDataEditDialogue extends StatelessWidget {
   final String labelText;
-  final ValueChanged<String> onSubmit;
+  final void Function(String value) onSubmit;
+  final void Function(String value) onPressed;
+  final void Function(String value) onChanged;
 
-  const UserDataEditDialogue(
-      {Key key, @required this.labelText, @required this.onSubmit})
-      : super(key: key);
+  const UserDataEditDialogue({
+    Key key,
+    @required this.labelText,
+    @required this.onSubmit,
+    @required this.onPressed,
+    @required this.onChanged,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    void onPressed(String value) => onSubmit;
     return Dialog(
       //  insetPadding: EdgeInsets.only(bottom: 500),
       shape: RoundedRectangleBorder(
@@ -29,22 +36,28 @@ class UserDataEditDialogue extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               child: TextField(
                 textInputAction: TextInputAction.done,
+
                 //FIXME: why is this user not adding
+                //TODO: write decission here
+                onChanged: onChanged,
                 onSubmitted: onSubmit,
                 decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   labelText: 'Enter the $labelText',
                 ),
               ),
             ),
             Padding(padding: EdgeInsets.only(top: 50.0)),
-            FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  'Got It!',
-                  style: TextStyle(color: Colors.purple, fontSize: 18.0),
-                ))
+            Container(
+              width: 200,
+              child: RaisedButton(
+                  color: Colors.grey,
+                  onPressed: () => onPressed,
+                  child: Text(
+                    'Got It!',
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  )),
+            )
           ],
         ),
       ),

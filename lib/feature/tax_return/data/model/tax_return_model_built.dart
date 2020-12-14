@@ -7,7 +7,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tax_return/feature/tax_return/data/model/serializers/serilizers_export.dart';
 
 part 'tax_return_model_built.g.dart';
-//TODO: create date stamp id
 
 abstract class TaxReturnModelBuilt
     implements Built<TaxReturnModelBuilt, TaxReturnModelBuiltBuilder> {

@@ -3,7 +3,9 @@ import 'package:tax_return/feature/tax_return/presentation/logic/bloc/bloc_expor
 import 'package:tax_return/feature/tax_return/presentation/logic/constants/constants_export.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tax_return/feature/tax_return/presentation/screens/createTaxData.dart';
 
+//TODO: when user sign in with normal email, perform if check to get data
 class CitPage extends StatelessWidget {
   final String companyName;
   const CitPage({Key key, this.companyName}) : super(key: key);
@@ -46,7 +48,16 @@ class CitPage extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-              IsCompanyYears()
+              IsCompanyYears(),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CreateTaxReturn(
+                            isEditing: false,
+                          )));
+                },
+                child: Text('Create New Tax'),
+              )
             ],
           ),
         ),
@@ -147,7 +158,6 @@ class _IsCompanyYearsState extends State<IsCompanyYears> {
       return _isChecked;
     }
 
-    ;
     return Container(
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       child: CheckboxListTile(

@@ -77,9 +77,9 @@ void main() {
   );
 
   group('AuthenticationRepository', () {
-    firebase_auth.FirebaseAuth firebaseAuth;
-    GoogleSignIn googleSignIn;
-    FacebookLogin facebookLogin;
+    MockFirebaseAuth firebaseAuth;
+    MockGoogleSignIn googleSignIn;
+    MockFaceBookSignIn facebookLogin;
     AuthenticationRepository authenticationRepository;
 
     setUp(() {

@@ -36,14 +36,7 @@ class App extends StatelessWidget {
   }
 }
 
-class AppView extends StatefulWidget {
-  AppView({Key key}) : super(key: key);
-
-  @override
-  _AppViewState createState() => _AppViewState();
-}
-
-class _AppViewState extends State<AppView> {
+class AppView extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final _navigatorKey = GlobalKey<NavigatorState>();
   NavigatorState get _navigator => _navigatorKey.currentState;
@@ -59,9 +52,9 @@ class _AppViewState extends State<AppView> {
                 create: (_) {
                   final user = context.bloc<AuthenticationBloc>().state.user;
                   return UserBloc(
-                      userRepository: FirebaseUserRepository(
-                          firebaseFirestore: _firestore, authUser: user))
-                    ..add(LoadUsers());
+                    userRepository: FirebaseUserRepository(
+                        firebaseFirestore: _firestore, authUser: user),
+                  )..add(LoadUsers());
                 },
               ),
               BlocProvider<TaxReturnCubit>(create: (_) {
